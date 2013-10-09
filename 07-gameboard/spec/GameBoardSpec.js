@@ -76,5 +76,6 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		expect("hola").toEqual(game.removed[0]);
 		expect(game.objects).toEqual([]);
 	});
+
 });
 
