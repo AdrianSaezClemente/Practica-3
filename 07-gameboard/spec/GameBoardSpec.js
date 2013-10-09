@@ -56,3 +56,15 @@
     colisionado con objetos de cierto tipo, no con todos los objetos.
 
 */
+
+
+describe("Ver funcionalidad de la clase GameBoard", function(){
+
+	it("Funcion add", function(){
+		var game = new GameBoard();
+		expect(game.add("hola")).toEqual(game.objects[0]);
+	});
+
+	
+});
+
