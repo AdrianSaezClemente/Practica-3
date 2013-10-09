@@ -65,6 +65,16 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		expect(game.add("hola")).toEqual(game.objects[0]);
 	});
 
+	it("Funcion resetRemove, remove", function(){
+		var game = new GameBoard();
+		game.resetRemoved();
+		game.remove("hola");
 	
+		var agrego = game.add("hola");
+
+		game.finalizeRemoved();
+		expect("hola").toEqual(game.removed[0]);
+		expect(game.objects).toEqual([]);
+	});
 });
 
