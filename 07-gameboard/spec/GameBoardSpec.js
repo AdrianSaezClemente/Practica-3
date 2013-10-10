@@ -78,7 +78,7 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		expect(game.objects).toEqual([]);
 	});
 
-		
+
 	it("Funcion overlap", function(){
 		var game = new GameBoard();
 		var Coordenadas = function(x,y,h,w){
@@ -94,5 +94,27 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		expect(game.overlap(coordA,coordC)).toEqual(true);
 	});
 
+	
+	it("Funcion iterate", function(){
+		var game = new GameBoard();
+		var obj1 = new function(){
+			this.funcion = function(){
+				return 0;
+			};
+		};
+		var obj2 = new function(){
+			this.funcion = function(){
+				return 1;
+			};
+		};
+		spyOn(obj1,"funcion");
+		spyOn(obj2,"funcion");
+		game.add(obj1);
+		game.add(obj2);
+		game.iterate("funcion");
+		
+
+		_.each(game.objects,function(element,index,list){expect(element.funcion).toHaveBeenCalled()});
+	});
 });
 
