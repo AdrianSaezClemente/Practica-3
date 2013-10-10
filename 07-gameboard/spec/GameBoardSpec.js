@@ -65,6 +65,7 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		expect(game.add("hola")).toEqual(game.objects[0]);
 	});
 
+
 	it("Funcion resetRemoved, remove y finalizeRemoved", function(){
 		var game = new GameBoard();
 		game.resetRemoved();
@@ -75,6 +76,22 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 		game.finalizeRemoved();
 		expect("hola").toEqual(game.removed[0]);
 		expect(game.objects).toEqual([]);
+	});
+
+		
+	it("Funcion overlap", function(){
+		var game = new GameBoard();
+		var Coordenadas = function(x,y,h,w){
+			this.x = x;
+			this.y = y;
+			this.h = h;
+			this.w = w;
+		};
+		var coordA = new Coordenadas(1,1,3,3);
+		var coordB = new Coordenadas(9,9,3,3);
+		var coordC = new Coordenadas(2,2,3,3);
+		expect(game.overlap(coordA,coordB)).toEqual(false);
+		expect(game.overlap(coordA,coordC)).toEqual(true);
 	});
 
 });
