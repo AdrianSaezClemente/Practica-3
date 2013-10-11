@@ -116,5 +116,31 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 
 		_.each(game.objects,function(element,index,list){expect(element.funcion).toHaveBeenCalled()});
 	});
+
+
+	it("Funcion detect", function(){
+		var game = new GameBoard();
+		var funcion = function(){
+			
+		}
+		var obj3 = {
+			funcion : function(){return false;}
+		};
+		var obj2 = {
+			funcion : function(){return true;}
+		};
+		var obj1 = {
+			funcion : function(){return false;}
+		};
+		var obj4 = "hola";
+		game.add(obj1);
+		game.add(obj2);
+		game.add(obj3);
+		game.add(obj4);
+
+		var objeto = game.detect(funcion);
+		expect(game.objects[3]).toBe("hola");
+		//_.each(game.objects,function(element,index,list){expect(game.objects[1]).toEqual(objeto)});
+	});
 });
 

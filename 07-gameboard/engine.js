@@ -207,7 +207,7 @@ var GameBoard = function() {
     // objetos de objects
     this.iterate = function(funcName) {
 	// Convertimos en un array args (1..)
-	var args = Array.prototype.slice.call(arguments,1);
+	var args = Array.prototype.slice.call(arguments,1); //argumenst.slice(1)
 
 	for(var i=0, len=this.objects.length; i<len;i++) {
 	    var obj = this.objects[i];
