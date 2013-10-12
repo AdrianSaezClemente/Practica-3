@@ -120,27 +120,26 @@ describe("Ver funcionalidad de la clase GameBoard", function(){
 
 	it("Funcion detect", function(){
 		var game = new GameBoard();
-		var funcion = function(){
-			
-		}
-		var obj3 = {
-			funcion : function(){return false;}
-		};
-		var obj2 = {
-			funcion : function(){return true;}
+		var funcion = {
+			valor : 1,
+			func: function(){
+				return this.valor;
+			},
 		};
 		var obj1 = {
-			funcion : function(){return false;}
+			valor : 2
 		};
-		var obj4 = "hola";
+		var obj2 = {
+			valor : 3
+		};
+		//alert(4);
 		game.add(obj1);
 		game.add(obj2);
-		game.add(obj3);
-		game.add(obj4);
 
-		var objeto = game.detect(funcion);
-		expect(game.objects[3]).toBe("hola");
-		//_.each(game.objects,function(element,index,list){expect(game.objects[1]).toEqual(objeto)});
+		var objeto = game.detect(funcion.func);
+
+		expect(0).toBe(0);
+		_.each(game.objects,function(element,index,list){expect(list[0].valor).toEqual(objeto.valor)});
 	});
 });
 
