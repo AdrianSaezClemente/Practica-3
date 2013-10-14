@@ -42,6 +42,20 @@ describe("Ver funcionalidad de la clase PlayerMissile", function(){
 		expect(player.y).toEqual(-4);
 	});
 
-
+	it("Funcion PlayerMissile.step()", function(){
+		
+		SpriteSheet.map = {
+			missile: { sx: 0, sy: 30, w: 2, h: 10, frames: 1 }
+		};
+		var board = {
+			remove : function(){
+				return true;
+			}
+		};
+		var player = new PlayerMissile(6,6);
+		player.board = board;
+		player.step(1);
+		expect(player.y).toEqual(-704);
+	});
 });
 
