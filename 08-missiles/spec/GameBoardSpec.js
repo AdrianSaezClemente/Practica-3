@@ -40,3 +40,88 @@ Especificación: GameBoard debe
 
 
 */
+
+describe("Ver funcionalidad de la clase GameBoard", function(){
+
+	it("Funcion add", function(){
+		var game = new GameBoard();
+		expect(game.add("hola")).toEqual(game.objects[0]);
+	});
+
+
+	it("Funcion resetRemoved, remove y finalizeRemoved", function(){
+		var game = new GameBoard();
+		game.resetRemoved();
+		game.remove("hola");
+	
+		var agrego = game.add("hola");
+
+		game.finalizeRemoved();
+		expect("hola").toEqual(game.removed[0]);
+		expect(game.objects).toEqual([]);
+	});
+
+
+	it("Funcion overlap", function(){
+		var game = new GameBoard();
+		var Coordenadas = function(x,y,h,w){
+			this.x = x;
+			this.y = y;
+			this.h = h;
+			this.w = w;
+		};
+		var coordA = new Coordenadas(1,1,3,3);
+		var coordB = new Coordenadas(9,9,3,3);
+		var coordC = new Coordenadas(2,2,3,3);
+		expect(game.overlap(coordA,coordB)).toEqual(false);
+		expect(game.overlap(coordA,coordC)).toEqual(true);
+	});
+
+	
+	it("Funcion iterate", function(){
+		var game = new GameBoard();
+		var obj1 = new function(){
+			this.funcion = function(){
+				return 0;
+			};
+		};
+		var obj2 = new function(){
+			this.funcion = function(){
+				return 1;
+			};
+		};
+		spyOn(obj1,"funcion");
+		spyOn(obj2,"funcion");
+		game.add(obj1);
+		game.add(obj2);
+		game.iterate("funcion");
+		
+
+		_.each(game.objects,function(element,index,list){expect(element.funcion).toHaveBeenCalled()});
+	});
+
+
+	it("Funcion detect", function(){
+		var game = new GameBoard();
+		var funcion = {
+			valor : 1,
+			func: function(){
+				return this.valor;
+			},
+		};
+		var obj1 = {
+			valor : 2
+		};
+		var obj2 = {
+			valor : 3
+		};
+		//alert(4);
+		game.add(obj1);
+		game.add(obj2);
+
+		var objeto = game.detect(funcion.func);
+
+		expect(0).toBe(0);
+		_.each(game.objects,function(element,index,list){expect(list[0].valor).toEqual(objeto.valor)});
+	});
+});

@@ -27,3 +27,21 @@
     la clase en el prototipo
 
 */
+
+describe("Ver funcionalidad de la clase PlayerMissile", function(){
+
+	it("Funcion PlayerMissile", function(){
+		
+		SpriteSheet.map = {
+			missile: { sx: 0, sy: 30, w: 2, h: 10, frames: 1 }
+		};
+		var player = new PlayerMissile(6,6);
+		expect(player.x).toEqual(5);
+		expect(player.w).toEqual(2);
+		expect(player.h).toEqual(10);
+		expect(player.y).toEqual(-4);
+	});
+
+
+});
+
