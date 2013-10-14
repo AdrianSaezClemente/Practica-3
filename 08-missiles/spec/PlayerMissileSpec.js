@@ -57,5 +57,17 @@ describe("Ver funcionalidad de la clase PlayerMissile", function(){
 		player.step(1);
 		expect(player.y).toEqual(-704);
 	});
+
+	it("Funcion PlayerMissile.draw()", function(){
+		
+		SpriteSheet.map = {
+			missile: { sx: 0, sy: 30, w: 2, h: 10, frames: 1 }
+		};
+		var player = new PlayerMissile(6,6);
+
+		spyOn(SpriteSheet,"draw");
+		player.draw("hola");
+		expect(SpriteSheet.draw).toHaveBeenCalled();
+	});
 });
 
